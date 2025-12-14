@@ -149,6 +149,12 @@ Para este proyecto intente crear en el dashboard unos recuadros con los tipos de
 
 ##### 6. Link de Git
 
+https://github.com/ayende10/helpdesk-agosto-2025.git
+
+####### 7. Link del video
+
+
+
 
 
 
