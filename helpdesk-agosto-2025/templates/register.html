@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <h3 class="text-center mb-4">Register</h3>
+      <form method="post">
+        <!-- Nombre -->
+        <div class="mb-3">
+          <label class="form-label" for="name">Name</label>
+          <input id="name" name="name" type="text" class="form-control" required />
+        </div>
+        <!-- Email -->
+        <div class="mb-3">
+          <label class="form-label" for="email">Email</label>
+          <input id="email" name="email" type="email" class="form-control" required />
+        </div>
+        <!-- Password -->
+        <div class="mb-3">
+          <label class="form-label" for="password">Password</label>
+          <input id="password" name="password" type="password" class="form-control" required />
+        </div>
+        <!-- Rol -->
+        <div class="mb-3">
+          <label class="form-label" for="role">Role</label>
+          <select id="role" name="role" class="form-select" required>
+            <option value="USER" selected>USER</option>
+            <option value="AGENT">AGENT</option>
+          </select>
+        </div>
+        <!-- Botones -->
+        <button type="submit" class="btn btn-success w-100">Register</button>
+        <a href="{{ url_for('login') }}" class="btn btn-secondary w-100 mt-2">Back to Login</a>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
