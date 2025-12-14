@@ -4,40 +4,44 @@
   <h2 class="mb-4">Dashboard</h2>
 
   <!-- Tarjetas de resumen de tickets -->
-  <div class="row mb-4">
-    <div class="col-12 col-sm-6 col-lg-3 mb-3">
-      <div class="card text-center h-100">
-        <div class="card-body">
-          <h6 class="card-title">Open Tickets</h6>
-          <p class="display-6 text-secondary">0</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 col-sm-6 col-lg-3 mb-3">
-      <div class="card text-center h-100">
-        <div class="card-body">
-          <h6 class="card-title">In Progress</h6>
-          <p class="display-6 text-warning">0</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 col-sm-6 col-lg-3 mb-3">
-      <div class="card text-center h-100">
-        <div class="card-body">
-          <h6 class="card-title">Resolved</h6>
-          <p class="display-6 text-success">0</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 col-sm-6 col-lg-3 mb-3">
-      <div class="card text-center h-100">
-        <div class="card-body">
-          <h6 class="card-title">Total Tickets</h6>
-          <p class="display-6 text-primary">0</p>
-        </div>
+<div class="row mb-4">
+  <div class="col-12 col-sm-6 col-lg-3 mb-3">
+    <div class="card text-center h-100">
+      <div class="card-body">
+        <h6 class="card-title">Open Tickets</h6>
+        <p class="display-6 text-secondary">{{ open_tickets }}</p>
       </div>
     </div>
   </div>
+
+  <div class="col-12 col-sm-6 col-lg-3 mb-3">
+    <div class="card text-center h-100">
+      <div class="card-body">
+        <h6 class="card-title">In Progress</h6>
+        <p class="display-6 text-warning">{{ in_progress_tickets }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-sm-6 col-lg-3 mb-3">
+    <div class="card text-center h-100">
+      <div class="card-body">
+        <h6 class="card-title">Resolved</h6>
+        <p class="display-6 text-success">{{ resolved_tickets }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-sm-6 col-lg-3 mb-3">
+    <div class="card text-center h-100">
+      <div class="card-body">
+        <h6 class="card-title">Total Tickets</h6>
+        <p class="display-6 text-primary">{{ total_tickets }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 
   <!-- Gráficos -->
   <div class="row mb-4">
@@ -63,15 +67,15 @@
       <div class="card text-center h-100">
         <div class="card-body">
           <h6 class="card-title">Total Users</h6>
-          <p class="display-6">0</p>
+          <p class="display-6">{{ total_users }}</p>
         </div>
       </div>
     </div>
     <div class="col-12 col-md-6 mb-3">
       <div class="card text-center h-100">
         <div class="card-body">
-          <h6 class="card-title">Agents</h6>
-          <p class="display-6">0</p>
+          <h6 class="card-title">Total Agents</h6>
+          <p class="display-6">{{ total_agents }}</p>
         </div>
       </div>
     </div>

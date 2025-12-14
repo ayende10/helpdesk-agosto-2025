@@ -102,41 +102,42 @@ def dashboard():
     conn = get_db_connection()
     with conn.cursor() as cursor:
 
+        # Tickets por estado
         cursor.execute("""
             SELECT status, COUNT(*) AS count
             FROM tickets
             GROUP BY status
-        """)  
-        
-        # Tickets por estado
-        cursor.execute("SELECT COUNT(*) AS count FROM tickets WHERE status = 'OPEN'")
-        open_tickets = cursor.fetchone()["count"]
+        """)
+        status_counts = {row["status"]: row["count"] for row in cursor.fetchall()}
 
-        cursor.execute("SELECT COUNT(*) AS count FROM tickets WHERE status = 'IN_PROGRESS'")
-        in_progress_tickets = cursor.fetchone()["count"]
-
-        cursor.execute("SELECT COUNT(*) AS count FROM tickets WHERE status = 'RESOLVED'")
-        resolved_tickets = cursor.fetchone()["count"]
-
-        cursor.execute("SELECT COUNT(*) AS count FROM tickets")
-        total_tickets = cursor.fetchone()["count"]
+        open_tickets = status_counts.get("OPEN", 0)
+        in_progress_tickets = status_counts.get("IN_PROGRESS", 0)
+        resolved_tickets = status_counts.get("RESOLVED", 0)
+        total_tickets = sum(status_counts.values())
 
         # Tickets por prioridad
-        cursor.execute("SELECT COUNT(*) AS count FROM tickets WHERE priority = 'LOW'")
-        low_priority = cursor.fetchone()["count"]
+        cursor.execute("""
+            SELECT priority, COUNT(*) AS count
+            FROM tickets
+            GROUP BY priority
+        """)
+        priority_counts = {row["priority"]: row["count"] for row in cursor.fetchall()}
 
-        cursor.execute("SELECT COUNT(*) AS count FROM tickets WHERE priority = 'MEDIUM'")
-        medium_priority = cursor.fetchone()["count"]
-
-        cursor.execute("SELECT COUNT(*) AS count FROM tickets WHERE priority = 'HIGH'")
-        high_priority = cursor.fetchone()["count"]
+        low_priority = priority_counts.get("LOW", 0)
+        medium_priority = priority_counts.get("MEDIUM", 0)
+        high_priority = priority_counts.get("HIGH", 0)
 
         # Usuarios
-        cursor.execute("SELECT COUNT(*) AS count FROM users")
-        total_users = cursor.fetchone()["count"]
+        cursor.execute("""
+            SELECT 
+                COUNT(*) AS total_users,
+                SUM(CASE WHEN role = 'AGENT' THEN 1 ELSE 0 END) AS total_agents
+            FROM users
+        """)
+        users_data = cursor.fetchone()
 
-        cursor.execute("SELECT COUNT(*) AS count FROM users WHERE role = 'AGENT'")
-        total_agents = cursor.fetchone()["count"]
+        total_users = users_data["total_users"]
+        total_agents = users_data["total_agents"]
 
     conn.close()
 
@@ -152,6 +153,7 @@ def dashboard():
         total_users=total_users,
         total_agents=total_agents
     )
+
 
 
 @app.route("/logout") 
