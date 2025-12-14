@@ -153,6 +153,7 @@ https://github.com/ayende10/helpdesk-agosto-2025.git
 
 ####### 7. Link del video
 
+https://youtu.be/gqjG4AlsPS0
 
 
 
